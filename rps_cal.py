@@ -5,13 +5,13 @@ import time
 import pandas as pd
 
 def rps_home():
-    #os.system("python /opt/pyAPT-master/home.py")
-    print("rps_home")
+    os.system("python /opt/pyAPT-master/home.py")
+    #print("rps_home")
 
 
 def rps_goto(angle):
-    #os.system("python /opt/pyAPT-master/goto.py {0}".format(float(angle)))
-    print("rps_goto")
+    os.system("python /opt/pyAPT-master/goto.py {0}".format(float(angle)))
+    #print("rps_goto")
 
 def save_csv(daq_data, filename):
     daq_data.to_csv(filename)
