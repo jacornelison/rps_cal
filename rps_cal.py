@@ -19,7 +19,7 @@ def save_csv(daq_data, filename):
 ## Main Program
 
 # Initialize csv file
-filenameroot = "rps_cal_test"
+filenameroot = "data/rps_cal_90GHz"
 
 # Initialize Labjack
 dmmtype = "u6"
@@ -30,7 +30,7 @@ scans = 1 # Number of scans to do
 res = 30 # Angle Resolution in degrees
 angle_cap1 = -180
 angle_cap2 = 180
-rest = 2 # Time in seconds to rest at position
+rest = 60 # Time in seconds to rest at position
 
 
 
