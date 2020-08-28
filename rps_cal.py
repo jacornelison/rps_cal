@@ -6,12 +6,12 @@ import pandas as pd
 
 def rps_home():
     os.system("python /opt/pyAPT-master/home.py")
-    #print("rps_home")
+#    print("rps_home")
 
 
 def rps_goto(angle):
     os.system("python /opt/pyAPT-master/goto.py {0}".format(float(angle)))
-    #print("rps_goto")
+#    print("rps_goto")
 
 def save_csv(daq_data, filename):
     daq_data.to_csv(filename)
@@ -31,7 +31,7 @@ res = 30 # Angle Resolution in degrees
 angle_cap1 = -180
 angle_cap2 = 180
 rest = 2 # Time in seconds to rest at position
-daq_data = pd.DataFrame(columns=["Angle","Lock-In Amp","Temp"])
+
 
 
 # Scan strategy
@@ -42,12 +42,14 @@ for scanind in np.arange(0,scans):
 
     rps_home()
     for loopind in [1,2]:
-        ang_array = np.arange(angle_cap1,angle_cap2,res)
+        daq_data = pd.DataFrame(columns=["Angle", "Lock-In Amp", "Temp"])
+        ang_array = np.arange(angle_cap1,angle_cap2+res,res)
 
         if loopind == 2:
             ang_array = np.flip(ang_array)
 
         for angind in ang_array:
+            print(angind)
             rps_goto(angind)
 
             # Collect some data
