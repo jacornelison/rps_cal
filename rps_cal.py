@@ -30,6 +30,7 @@ scans = 1 # Number of scans to do
 res = 30 # Angle Resolution in degrees
 angle_cap1 = -180
 angle_cap2 = 180
+wait_time = 30 # Time to wait before measuring
 rest = 60 # Time in seconds to rest at position
 
 
@@ -52,6 +53,7 @@ for scanind in np.arange(0,scans):
             print(angind)
             rps_goto(angind)
 
+            time.sleep(wait_time)
             # Collect some data
             tstart = time.time()
             while (time.time()-tstart < rest):
