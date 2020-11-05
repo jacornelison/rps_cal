@@ -26,7 +26,7 @@ dmmtype = "u6"
 dmm = u6.U6()
 dmm.getCalibrationData()
 
-scans = 1 # Number of scans to do
+scans = 10 # Number of scans to do
 res = 30 # Angle Resolution in degrees
 angle_cap1 = -180
 angle_cap2 = 180
