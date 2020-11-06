@@ -32,7 +32,7 @@ angle_cap1 = -180
 angle_cap2 = 180
 wait_time = 30 # Time to wait before measuring
 rest = 60 # Time in seconds to rest at position
-
+scanstart = 0
 
 
 # Scan strategy
@@ -40,8 +40,16 @@ rest = 60 # Time in seconds to rest at position
 
 # Loop over angles
 for scanind in np.arange(0,scans):
+    filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind + scanstart, loopind)
+    while os.path.isfile(filename):
+        scanstart += 1
+        filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind + scanstart, loopind)
 
+    print("Beginning " + filename)
+
+    time.sleep(1)
     rps_home()
+    time.sleep(1)
     for loopind in [1,2]:
         daq_data = pd.DataFrame(columns=["Angle", "Lock-In Amp", "Temp"])
         ang_array = np.arange(angle_cap1,angle_cap2+res,res)
@@ -65,8 +73,9 @@ for scanind in np.arange(0,scans):
                             columns=daq_data.keys().to_list()),
                             ignore_index=True)
 
+        time.sleep(1)
         rps_home()
+        time.sleep(1)
 
-        filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind,loopind)
         print("saving to "+filename)
         save_csv(daq_data,filename)
