@@ -40,17 +40,18 @@ scanstart = 0
 
 # Loop over angles
 for scanind in np.arange(0,scans):
-    filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind + scanstart, loopind)
-    while os.path.isfile(filename):
-        scanstart += 1
-        filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind + scanstart, loopind)
-
-    print("Beginning " + filename)
 
     time.sleep(1)
     rps_home()
     time.sleep(1)
     for loopind in [1,2]:
+        filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind + scanstart, loopind)
+        while os.path.isfile(filename):
+            scanstart += 1
+            filename = filenameroot + "_scan_{0}_loop_{1}.csv".format(scanind + scanstart, loopind)
+
+        print("Beginning " + filename)
+
         daq_data = pd.DataFrame(columns=["Angle", "Lock-In Amp", "Temp"])
         ang_array = np.arange(angle_cap1,angle_cap2+res,res)
 
